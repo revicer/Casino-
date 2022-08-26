@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Casino;
+
+GameProcess game = new GameProcess();
+CasinoPlayer firstPlayer = new CasinoPlayer();
+CasinoPlayer secondPlayer = new CasinoPlayer();
+game.StartGame(firstPlayer, secondPlayer);

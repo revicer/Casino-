@@ -1,0 +1,15 @@
+C:\Users\Admin\source\repos\Casino\Casino\Casino\bin\Debug\net6.0\Casino.exe
+C:\Users\Admin\source\repos\Casino\Casino\Casino\bin\Debug\net6.0\Casino.deps.json
+C:\Users\Admin\source\repos\Casino\Casino\Casino\bin\Debug\net6.0\Casino.runtimeconfig.json
+C:\Users\Admin\source\repos\Casino\Casino\Casino\bin\Debug\net6.0\Casino.dll
+C:\Users\Admin\source\repos\Casino\Casino\Casino\bin\Debug\net6.0\Casino.pdb
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.dll
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\refint\Casino.dll
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.pdb
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\Casino.genruntimeconfig.cache
+C:\Users\Admin\source\repos\Casino\Casino\Casino\obj\Debug\net6.0\ref\Casino.dll
