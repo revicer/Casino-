@@ -25,5 +25,9 @@ namespace Casino
         {
             this.pokerChips = pokerChips;
         }
+        public void PlayerBalance()
+        {
+            Console.WriteLine($"Player balance: {pokerChips}");
+        }
     }
 }

@@ -15,36 +15,43 @@ namespace Casino
 
         public void Round(CasinoPlayer firstPlayer, CasinoPlayer secondPlayer)
         {
-            Balance();
+            firstPlayer.PlayerBalance();
+            secondPlayer.PlayerBalance();
             firstPlayer.RoundChips();
             secondPlayer.RoundChips();
-            Balance();
+            firstPlayer.PlayerBalance();
+            secondPlayer.PlayerBalance();
             if (firstPlayerCube.Roll() == secondPlayerCube.Roll())
             {
                 firstPlayer.DrawChips(secondPlayer.pokerChips);
-                Balance();
+                Console.WriteLine("Draw!");
+                firstPlayer.PlayerBalance();
+                secondPlayer.PlayerBalance();
+
                 return;
             }
             else if (firstPlayerCube.Roll() >= secondPlayerCube.Roll())
             {
                 firstPlayer.WinChips(secondPlayer.pokerChips);
-                Balance();
+                Console.WriteLine("Win!");
+                firstPlayer.PlayerBalance();
+                secondPlayer.PlayerBalance();
+
                 return;
             }
             else if (firstPlayerCube.Roll() <= secondPlayerCube.Roll())
             {
                 firstPlayer.LoseChips(secondPlayer.pokerChips);
-                Balance();
+                Console.WriteLine("Lose!");
+                firstPlayer.PlayerBalance();
+                secondPlayer.PlayerBalance();
+
                 return;
             }
 
 
         }
-        private void Balance()
-        {
-            Console.WriteLine($"First player balance: {firstPlayer.pokerChips}");
-            Console.WriteLine($"Second player balance: {secondPlayer.pokerChips}");
-        }
+
 
     }
 }

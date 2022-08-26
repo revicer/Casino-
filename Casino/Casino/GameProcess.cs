@@ -16,14 +16,22 @@ namespace Casino
         public void StartGame(CasinoPlayer firstPlayer, CasinoPlayer secondPlayer)
         {
             UserInputHelper userInputHelper = new UserInputHelper();
-            ConsoleKey key = userInputHelper.GetButton();
 
-            Console.WriteLine("Enter Spacebar to start a casino entertainment!");
-            while (firstPlayer.pokerChips>=0)
+            Console.WriteLine("Welcome to casino!");
+
+
+            while (firstPlayer.pokerChips>=0 || secondPlayer.pokerChips >= 0)
             {
+                Console.WriteLine("Enter Spacebar to start a casino entertainment!");
+                ConsoleKey key = userInputHelper.GetButton();
                 if (key == ConsoleKey.Spacebar)
                 {
                     casino.Round(firstPlayer, secondPlayer);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Please enter the Spacebar!");
                 }
 
             }
