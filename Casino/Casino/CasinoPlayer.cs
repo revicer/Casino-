@@ -8,26 +8,20 @@ namespace Casino
 {
     internal class CasinoPlayer
     {
-        public int pokerChips = 100;
-        public void RoundChips()
+        private int BalanceChips = 100;
+
+        public void RemoveChips(int roundChips)
         {
-            pokerChips -= 10;
+            this.BalanceChips -= roundChips;  
         }
-        public void LoseChips(int pokerChips=10)
+        public void AddChips(int roundChips)
         {
-            this.pokerChips -= pokerChips;  
+            this.BalanceChips += roundChips;
         }
-        public void WinChips(int pokerChips=10)
-        {
-            this.pokerChips += pokerChips;
-        }
-        public void DrawChips(int pokerChips)
-        {
-            this.pokerChips = pokerChips;
-        }
+
         public void PlayerBalance()
         {
-            Console.WriteLine($"Player balance: {pokerChips}");
+            Console.WriteLine($"Player balance: {BalanceChips}");
         }
     }
 }
