@@ -9,8 +9,8 @@ namespace Casino
 {
     internal class GameProcess
     {
-        CasinoRound casinoTableRound = new CasinoRound(); 
-        ChipsExist ChipsExist = new ChipsExist();
+        CasinoRound casinoTableRound = new CasinoRound();
+        ChipsExist ChipsExist = new ChipsExist(); //TODO: rename to PlayerBalanaceHelper
 
         public void StartGame(CasinoPlayer[] arrayPlayers)
         {
@@ -25,7 +25,7 @@ namespace Casino
                 if (key == ConsoleKey.Spacebar)
                 {
                     Console.WriteLine();
-                    casinoTableRound.Round(arrayPlayers);
+                    casinoTableRound.StartRound(arrayPlayers);
                 }
                 else
                 {

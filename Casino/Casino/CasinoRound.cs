@@ -10,53 +10,52 @@ namespace Casino
 {
     internal class CasinoRound
     {
-        RollCube firstPlayerCube = new RollCube();
-        RollCube secondPlayerCube = new RollCube();
-        RoundWinner roundWinner = new RoundWinner();
-        IsDraw isDraw = new IsDraw();
+        private RollCube _firstCube = new RollCube();
+        private RollCube _secondCube = new RollCube();
         private int _roundBalance;
-        private int _roundAmount;
+        private int _roundCost;
 
-        //public void PlayerRoll(int cubesValue)
-        //{
-        //    //List<int> playerCubeValue = new List<int>();
-        //    //playerCubeValue.Add(cubesValue);
-        //    //var winnerValue = playerCubeValue.IndexOf(playerCubeValue.Max());
-        //}
-        public void Round(CasinoPlayer[] arrayPlayers)
+        public void StartRound(CasinoPlayer[] arrayPlayers)
         {
             _roundBalance = 0;
-            _roundAmount = 10;
+            _roundCost = 10;
 
-            for (int i = 0; i <= arrayPlayers.Length - 1; i++)
+            for (int i = 0; i < arrayPlayers.Length; i++)
             {
-                arrayPlayers[i].RemoveChips(_roundAmount);
+                arrayPlayers[i].RemoveChips(_roundCost);
+                _roundBalance += _roundCost;
             }
-
-            _roundBalance += _roundAmount*arrayPlayers.Length;
-
+            List<int> playerValue = IngameCubeRoll(arrayPlayers);
+            IngameRound(arrayPlayers, playerValue);
+        }
+        private List<int> IngameCubeRoll (CasinoPlayer[] arrayPlayers)
+        {
             List<int> playerCubeValue = new List<int>();
 
-            for (int i = 0; i <= arrayPlayers.Length-1; i++)
+            for (int i = 0; i < arrayPlayers.Length; i++)
             {
-                int cubesValue = firstPlayerCube.Roll() + secondPlayerCube.Roll();
+                int cubesValue = _firstCube.Roll() + _secondCube.Roll();
                 playerCubeValue.Add(cubesValue);
                 Console.WriteLine(cubesValue);
             }
+            return playerCubeValue;
+        }
+        private void IngameRound(CasinoPlayer[] arrayPlayers, List<int> playerCubeValue) 
+        { 
+            int[] _drawPlayerIndex = DrawRound(playerCubeValue);
 
-            if (IsDraw.DrawRound1(playerCubeValue))
+            if (_drawPlayerIndex.Length > 1)
             {
                 Console.WriteLine("Draw!");
-                for (int i = 0; i <= arrayPlayers.Length - 1; i++)
+                for (int i = 0; i < _drawPlayerIndex.Length; i++)
                 {
-                    arrayPlayers[i].AddChips(_roundBalance / arrayPlayers.Length);
+                    arrayPlayers[i].AddChips(_roundBalance / _drawPlayerIndex.Length);
                 }
             }
             else
             {
-                var winnerValue = playerCubeValue.IndexOf(playerCubeValue.Max());
-                int winner = roundWinner.IndexOfWinner(arrayPlayers, winnerValue);
-                arrayPlayers[winner].AddChips(_roundBalance);
+                var winnerIndex = playerCubeValue.IndexOf(playerCubeValue.Max());
+                arrayPlayers[winnerIndex].AddChips(_roundBalance);
             }
 
             for (int i = 0; i <= arrayPlayers.Length - 1; i++)
@@ -64,6 +63,28 @@ namespace Casino
                 arrayPlayers[i].PlayerBalance();
             }
 
+        }
+        private int[] DrawRound(List<int> playerCubeValue)
+        {
+            var maxCubeValue = new List<int>();
+            int tempMaxValue = int.MinValue;
+
+            for (int i = 0; i < playerCubeValue.Count; i++)
+            {
+                var cubeValue = playerCubeValue[i];
+                if (cubeValue == tempMaxValue)
+                {
+                    maxCubeValue.Add(i);
+                    continue;
+                }
+                if (cubeValue > tempMaxValue)
+                {
+                    tempMaxValue = cubeValue;
+                    maxCubeValue.Clear();
+                    maxCubeValue.Add(i);
+                }
+            }
+            return maxCubeValue.ToArray();
         }
 
     }

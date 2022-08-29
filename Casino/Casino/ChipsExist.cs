@@ -12,7 +12,10 @@ namespace Casino
         {
             for (int i = 0; i < arrayPlayers.Length; i++)
             {
-                return arrayPlayers[i].ChipsNotNull();
+                if (!arrayPlayers[i].ChipsNotNull())
+                {
+                    return false;    
+                }
             }
             return true;
         }

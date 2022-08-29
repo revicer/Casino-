@@ -8,7 +8,7 @@ namespace Casino
 {
     internal class CasinoPlayer
     {
-        private int BalanceChips = 100;
+        private int BalanceChips = 20;
         public int GetBalance()
         {
             return BalanceChips;
