@@ -10,6 +10,7 @@ namespace Casino
     internal class GameProcess
     {
         CasinoRound casinoTableRound = new CasinoRound(); 
+        ChipsExist ChipsExist = new ChipsExist();
 
         public void StartGame(CasinoPlayer[] arrayPlayers)
         {
@@ -17,12 +18,13 @@ namespace Casino
 
             Console.WriteLine("Welcome to casino!");
 
-            while (true)
+            while (ChipsExist.isChipsExist(arrayPlayers))
             {
                 Console.WriteLine("Enter Spacebar to start a casino entertainment!");
                 ConsoleKey key = userInputHelper.GetButton();
                 if (key == ConsoleKey.Spacebar)
                 {
+                    Console.WriteLine();
                     casinoTableRound.Round(arrayPlayers);
                 }
                 else

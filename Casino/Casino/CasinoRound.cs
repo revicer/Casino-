@@ -44,7 +44,7 @@ namespace Casino
                 Console.WriteLine(cubesValue);
             }
 
-            if (IsDraw.DrawRound(playerCubeValue))
+            if (IsDraw.DrawRound1(playerCubeValue))
             {
                 Console.WriteLine("Draw!");
                 for (int i = 0; i <= arrayPlayers.Length - 1; i++)
