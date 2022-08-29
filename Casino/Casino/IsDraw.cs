@@ -20,22 +20,26 @@ namespace Casino
             }
             return false;
         }
-        public static bool DrawRound1(List<int> playerCubeValue)
+        public static bool DrawRound1(List<int> playerCubeValue)  
         {
-            foreach (int i in playerCubeValue)   
+            foreach (int i in playerCubeValue)
             {
                 int maxValue = playerCubeValue.Max();
-                playerCubeValue.RemoveAt(playerCubeValue.IndexOf(playerCubeValue.Max()));
+                playerCubeValue.RemoveAt(playerCubeValue.IndexOf(maxValue));
                 if (maxValue == playerCubeValue[i])
                 {
                     return true;
-
-                    //if (playerCubeValue.Max() == playerCubeValue[i])
-                    //{
-                    //    return false;
-                    //}
                 }
             }
+            return false;
+        }
+        public static bool DrawRound2(List<int> playerCubeValue)
+        {
+            if (playerCubeValue[0] == playerCubeValue[1])
+            {
+                return true;
+            }
+
             return false;
         }
     }
