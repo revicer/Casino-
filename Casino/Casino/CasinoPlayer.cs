@@ -13,19 +13,25 @@ namespace Casino
         {
             return BalanceChips;
         }
-
         public void RemoveChips(int roundChips)
         {
-            this.BalanceChips -= roundChips;  
+            this.BalanceChips -= roundChips; 
         }
         public void AddChips(int roundChips)
         {
             this.BalanceChips += roundChips;
         }
-
         public void PlayerBalance()
         {
             Console.WriteLine($"Player balance: {BalanceChips}");
+        }
+        public bool ChipsNotNull()
+        {
+            if (BalanceChips<=0)
+            {
+                return false;
+            }
+            return true;    
         }
     }
 }

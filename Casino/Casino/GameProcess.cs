@@ -9,7 +9,7 @@ namespace Casino
 {
     internal class GameProcess
     {
-        CasinoRound casino = new CasinoRound(); 
+        CasinoRound casinoTableRound = new CasinoRound(); 
 
         public void StartGame(CasinoPlayer[] arrayPlayers)
         {
@@ -23,7 +23,7 @@ namespace Casino
                 ConsoleKey key = userInputHelper.GetButton();
                 if (key == ConsoleKey.Spacebar)
                 {
-                    casino.Round(arrayPlayers);
+                    casinoTableRound.Round(arrayPlayers);
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace Casino
 
             }
 
-
+            Console.WriteLine("Game is over");
         }
     }
 }

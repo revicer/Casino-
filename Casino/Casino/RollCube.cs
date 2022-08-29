@@ -11,7 +11,7 @@ namespace Casino
         public int Roll()
         {
             Random randomCube = new Random();
-            int cubeValue = randomCube.Next(1,10);
+            int cubeValue = randomCube.Next(1,6);
             return cubeValue;   
         }
     }
