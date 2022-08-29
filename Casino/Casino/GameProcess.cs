@@ -11,19 +11,19 @@ namespace Casino
     {
         CasinoRound casino = new CasinoRound(); 
 
-        public void StartGame(CasinoPlayer firstPlayer, CasinoPlayer secondPlayer)
+        public void StartGame(CasinoPlayer[] arrayPlayers)
         {
             UserInputHelper userInputHelper = new UserInputHelper();
 
             Console.WriteLine("Welcome to casino!");
 
-            while (firstPlayer.BalanceChips>=0 || secondPlayer.BalanceChips >= 0)
+            while (true)
             {
                 Console.WriteLine("Enter Spacebar to start a casino entertainment!");
                 ConsoleKey key = userInputHelper.GetButton();
                 if (key == ConsoleKey.Spacebar)
                 {
-                    casino.Round(firstPlayer, secondPlayer);
+                    casino.Round(arrayPlayers);
                 }
                 else
                 {

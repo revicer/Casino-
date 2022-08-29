@@ -9,6 +9,10 @@ namespace Casino
     internal class CasinoPlayer
     {
         private int BalanceChips = 100;
+        public int GetBalance()
+        {
+            return BalanceChips;
+        }
 
         public void RemoveChips(int roundChips)
         {

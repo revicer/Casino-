@@ -14,35 +14,29 @@ namespace Casino
         private int _roundBalance;
         private int _roundAmount;
         
-        private void PlayerRoll(int cubesValue)
+        public void PlayerRoll(int cubesValue)
         {
             List<int> playerCubeValue = new List<int>();
             playerCubeValue.Add(cubesValue);
 
         }
-
-        private void RoundPlayers(CasinoPlayer firstPlayer, CasinoPlayer secondPlayer)
-        {
-            CasinoPlayer[] players = new CasinoPlayer[] {firstPlayer, secondPlayer};
-
-        }
-
-        public void Round(CasinoPlayer[] players)
+        public void Round(CasinoPlayer[] arrayPlayers)
         {
             _roundBalance = 0;
             _roundAmount = 10;
-            players.firstPlayer.PlayerBalance();
-            secondPlayer.PlayerBalance();
-            firstPlayer.RemoveChips(_roundAmount);
-            secondPlayer.RemoveChips(_roundAmount);
 
-            _roundBalance += _roundAmount* players.Length;
+            arrayPlayers[0].RemoveChips(_roundAmount);
+            arrayPlayers[1].RemoveChips(_roundAmount);
+            
+            _roundBalance += _roundAmount*arrayPlayers.Length;
 
-            for (int i = 0; i <= players.Length; i++)
+            for (int i = 0; i <= arrayPlayers.Length-1; i++)
             {
                 int cubesValue = firstPlayerCube.Roll() + secondPlayerCube.Roll();
                 PlayerRoll(cubesValue);
+                Console.WriteLine(cubesValue);
             }
+
 
 
 
