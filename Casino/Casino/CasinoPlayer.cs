@@ -8,26 +8,28 @@ namespace Casino
 {
     internal class CasinoPlayer
     {
-        private int BalanceChips = 20;
+        private int _balanceChips = 100;
+        PlayerHelper playerHelper = new PlayerHelper();
+        private string _playerName;
         public int GetBalance()
         {
-            return BalanceChips;
+            return _balanceChips;
         }
         public void RemoveChips(int roundChips)
         {
-            this.BalanceChips -= roundChips; 
+            _balanceChips -= roundChips; 
         }
         public void AddChips(int roundChips)
         {
-            this.BalanceChips += roundChips;
+            _balanceChips += roundChips;
         }
         public void PlayerBalance()
         {
-            Console.WriteLine($"Player balance: {BalanceChips}");
+            Console.WriteLine($"{_playerName} balance: {_balanceChips}");
         }
-        public bool ChipsNotNull()
+        public bool ChipsNotZero()
         {
-            if (BalanceChips<=0)
+            if (_balanceChips<=0)
             {
                 return false;
             }

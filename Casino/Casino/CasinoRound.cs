@@ -10,17 +10,21 @@ namespace Casino
 {
     internal class CasinoRound
     {
-        private RollCube _firstCube = new RollCube();
-        private RollCube _secondCube = new RollCube();
+        private RandomHelper _firstCube = new RandomHelper();
+        private RandomHelper _secondCube = new RandomHelper();
+
         private int _roundBalance;
         private int _roundCost;
 
-        public void StartRound(CasinoPlayer[] arrayPlayers)
+
+
+        public void StartRound(List <CasinoPlayer>arrayPlayers)
         {
+
             _roundBalance = 0;
             _roundCost = 10;
 
-            for (int i = 0; i < arrayPlayers.Length; i++)
+            for (int i = 0; i < arrayPlayers.Count; i++)
             {
                 arrayPlayers[i].RemoveChips(_roundCost);
                 _roundBalance += _roundCost;
@@ -28,19 +32,19 @@ namespace Casino
             List<int> playerValue = IngameCubeRoll(arrayPlayers);
             IngameRound(arrayPlayers, playerValue);
         }
-        private List<int> IngameCubeRoll (CasinoPlayer[] arrayPlayers)
+        private List<int> IngameCubeRoll (List<CasinoPlayer> arrayPlayers)
         {
             List<int> playerCubeValue = new List<int>();
 
-            for (int i = 0; i < arrayPlayers.Length; i++)
+            for (int i = 0; i < arrayPlayers.Count; i++)
             {
-                int cubesValue = _firstCube.Roll() + _secondCube.Roll();
+                int cubesValue = _firstCube.RollCube() + _secondCube.RollCube();
                 playerCubeValue.Add(cubesValue);
                 Console.WriteLine(cubesValue);
             }
             return playerCubeValue;
         }
-        private void IngameRound(CasinoPlayer[] arrayPlayers, List<int> playerCubeValue) 
+        private void IngameRound(List<CasinoPlayer> arrayPlayers, List<int> playerCubeValue) 
         { 
             int[] _drawPlayerIndex = DrawRound(playerCubeValue);
 
@@ -49,7 +53,7 @@ namespace Casino
                 Console.WriteLine("Draw!");
                 for (int i = 0; i < _drawPlayerIndex.Length; i++)
                 {
-                    arrayPlayers[i].AddChips(_roundBalance / _drawPlayerIndex.Length);
+                    arrayPlayers[_drawPlayerIndex[i]].AddChips(_roundBalance / _drawPlayerIndex.Length);
                 }
             }
             else
@@ -58,7 +62,7 @@ namespace Casino
                 arrayPlayers[winnerIndex].AddChips(_roundBalance);
             }
 
-            for (int i = 0; i <= arrayPlayers.Length - 1; i++)
+            for (int i = 0; i <= arrayPlayers.Count - 1; i++)
             {
                 arrayPlayers[i].PlayerBalance();
             }
@@ -86,6 +90,5 @@ namespace Casino
             }
             return maxCubeValue.ToArray();
         }
-
     }
 }

@@ -8,13 +8,13 @@ namespace Casino
 {
     internal class ChipsExist
     {
-        public bool isChipsExist(CasinoPlayer[] arrayPlayers)
+        public bool isChipsExist(List<CasinoPlayer> arrayPlayers)
         {
-            for (int i = 0; i < arrayPlayers.Length; i++)
+            for (int i = 0; i < arrayPlayers.Count; i++)
             {
-                if (!arrayPlayers[i].ChipsNotNull())
+                if (arrayPlayers.Count == 1)
                 {
-                    return false;    
+                    return false;
                 }
             }
             return true;

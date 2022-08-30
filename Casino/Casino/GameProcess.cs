@@ -9,23 +9,28 @@ namespace Casino
 {
     internal class GameProcess
     {
-        CasinoRound casinoTableRound = new CasinoRound();
-        ChipsExist ChipsExist = new ChipsExist(); //TODO: rename to PlayerBalanaceHelper
+        private CasinoRound _casinoRoundTurn = new CasinoRound();
+        private ChipsExist _playerBalanaceHelper = new ChipsExist();
+        private PlayerCount _count = new PlayerCount();
+        PlayerHelper PlayerHelper = new PlayerHelper();
+        List<CasinoPlayer> arrayPlayers = new List<CasinoPlayer> { new CasinoPlayer(), new CasinoPlayer() };
 
-        public void StartGame(CasinoPlayer[] arrayPlayers)
+        public void StartGame()
         {
             UserInputHelper userInputHelper = new UserInputHelper();
 
             Console.WriteLine("Welcome to casino!");
 
-            while (ChipsExist.isChipsExist(arrayPlayers))
+            while (_playerBalanaceHelper.isChipsExist(arrayPlayers))
             {
+                _count.PlayerDeleteZeroChips(arrayPlayers);
+                _count.PlayerPerRound(arrayPlayers);
                 Console.WriteLine("Enter Spacebar to start a casino entertainment!");
                 ConsoleKey key = userInputHelper.GetButton();
                 if (key == ConsoleKey.Spacebar)
                 {
                     Console.WriteLine();
-                    casinoTableRound.StartRound(arrayPlayers);
+                    _casinoRoundTurn.StartRound(arrayPlayers);
                 }
                 else
                 {
@@ -36,6 +41,10 @@ namespace Casino
             }
 
             Console.WriteLine("Game is over");
+        }
+        private void SetUp()
+        {
+
         }
     }
 }
