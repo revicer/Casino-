@@ -12,7 +12,7 @@ namespace Casino
         private CasinoRound _casinoRoundTurn = new CasinoRound();
         private ChipsExist _playerBalanaceHelper = new ChipsExist();
         private PlayerCount _count = new PlayerCount();
-        List<CasinoPlayer> arrayPlayers = new List<CasinoPlayer>(8);
+        List<CasinoPlayer> arrayPlayers = new List<CasinoPlayer>(7);
 
         public void Awake()
         {

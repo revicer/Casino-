@@ -13,8 +13,8 @@ namespace Casino
         private RandomHelper _firstCube = new RandomHelper();
         private RandomHelper _secondCube = new RandomHelper();
 
-        private int _roundBalance;
-        private int _roundBet=10;
+        private int _roundBalance = 0;
+        private int _roundBet = 10;
 
         public int GetBetValue() { return _roundBet; }
 

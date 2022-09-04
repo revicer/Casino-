@@ -10,10 +10,14 @@ namespace Casino
     {
         RandomHelper randomHelper = new RandomHelper();
         Random randomIndex = new Random();
-
+        private static int _maxPlayerCoutn = 8;
+        List<int> playersAtAll = new List<int>(_maxPlayerCoutn);
         public void PlayerPerRound(List<CasinoPlayer> arrayPlayers)
         {
-            PlayerAdded(arrayPlayers);
+            if (playersAtAll.Count < _maxPlayerCoutn)
+            {
+                PlayerAdded(arrayPlayers);
+            }
             PlayerRemover(arrayPlayers);
         }
         public void PlayerDeleteZeroChips(List<CasinoPlayer> arrayPlayers)
@@ -25,13 +29,17 @@ namespace Casino
                     arrayPlayers.RemoveAt(i);
                 }
             }
-
+        }
+        public void PlayerCheck(List<CasinoPlayer> arrayPlayers)
+        {
+            playersAtAll.Add(1);
         }
         private void PlayerAdded(List<CasinoPlayer> arrayPlayers)
         {
             if (randomHelper.Roll(30))
             {
                 arrayPlayers.Add(PlayerFactory.Create());
+                PlayerCheck(arrayPlayers);
             }
         }
         private void PlayerRemover(List<CasinoPlayer> arrayPlayers)
