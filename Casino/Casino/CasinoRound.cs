@@ -14,20 +14,20 @@ namespace Casino
         private RandomHelper _secondCube = new RandomHelper();
 
         private int _roundBalance;
-        private int _roundCost;
+        private int _roundBet=10;
 
-
+        public int GetBetValue() { return _roundBet; }
 
         public void StartRound(List <CasinoPlayer>arrayPlayers)
         {
 
             _roundBalance = 0;
-            _roundCost = 10;
+            _roundBet = 10;
 
             for (int i = 0; i < arrayPlayers.Count; i++)
             {
-                arrayPlayers[i].RemoveChips(_roundCost);
-                _roundBalance += _roundCost;
+                arrayPlayers[i].RemoveChips(_roundBet);
+                _roundBalance += _roundBet;
             }
             List<int> playerValue = IngameCubeRoll(arrayPlayers);
             IngameRound(arrayPlayers, playerValue);

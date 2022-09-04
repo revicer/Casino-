@@ -9,8 +9,8 @@ namespace Casino
     internal class CasinoPlayer
     {
         private int _balanceChips = 100;
-        PlayerHelper playerHelper = new PlayerHelper();
-        private string _playerName;
+        public string playerName;
+        CasinoRound casinoRound = new CasinoRound();
         public int GetBalance()
         {
             return _balanceChips;
@@ -25,11 +25,11 @@ namespace Casino
         }
         public void PlayerBalance()
         {
-            Console.WriteLine($"{_playerName} balance: {_balanceChips}");
+            Console.WriteLine($"{playerName} balance: {_balanceChips}");
         }
         public bool ChipsNotZero()
         {
-            if (_balanceChips<=0)
+            if (_balanceChips<casinoRound.GetBetValue())
             {
                 return false;
             }

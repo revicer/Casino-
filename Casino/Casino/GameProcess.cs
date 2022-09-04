@@ -12,9 +12,13 @@ namespace Casino
         private CasinoRound _casinoRoundTurn = new CasinoRound();
         private ChipsExist _playerBalanaceHelper = new ChipsExist();
         private PlayerCount _count = new PlayerCount();
-        PlayerHelper PlayerHelper = new PlayerHelper();
-        List<CasinoPlayer> arrayPlayers = new List<CasinoPlayer> { new CasinoPlayer(), new CasinoPlayer() };
+        List<CasinoPlayer> arrayPlayers = new List<CasinoPlayer>(8);
 
+        public void Awake()
+        {
+            arrayPlayers.Add(PlayerFactory.Create());
+            arrayPlayers.Add(PlayerFactory.Create());
+        }
         public void StartGame()
         {
             UserInputHelper userInputHelper = new UserInputHelper();

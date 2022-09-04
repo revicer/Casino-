@@ -8,29 +8,13 @@ namespace Casino
 {
     internal class PlayerCount
     {
-        PlayerHelper PlayerHelper = new PlayerHelper();
+        RandomHelper randomHelper = new RandomHelper();
+        Random randomIndex = new Random();
+
         public void PlayerPerRound(List<CasinoPlayer> arrayPlayers)
         {
             PlayerAdded(arrayPlayers);
             PlayerRemover(arrayPlayers);
-        }
-        private void PlayerAdded(List<CasinoPlayer> arrayPlayers)
-        {
-            RandomHelper randomHelper = new RandomHelper();
-            if (randomHelper.Roll(50))
-            {
-                arrayPlayers.Add(new CasinoPlayer());
-            }
-        }
-        private void PlayerRemover(List<CasinoPlayer> arrayPlayers)
-        {
-            RandomHelper randomHelper = new RandomHelper();
-            Random randomIndex = new Random();
-            if (randomHelper.Roll(5))
-            {
-                arrayPlayers.Remove(arrayPlayers[randomIndex.Next(0, arrayPlayers.Count)]);
-
-            }
         }
         public void PlayerDeleteZeroChips(List<CasinoPlayer> arrayPlayers)
         {
@@ -43,6 +27,20 @@ namespace Casino
             }
 
         }
+        private void PlayerAdded(List<CasinoPlayer> arrayPlayers)
+        {
+            if (randomHelper.Roll(30))
+            {
+                arrayPlayers.Add(PlayerFactory.Create());
+            }
+        }
+        private void PlayerRemover(List<CasinoPlayer> arrayPlayers)
+        {
+            if (randomHelper.Roll(30))
+            {
+                arrayPlayers.Remove(arrayPlayers[randomIndex.Next(0, arrayPlayers.Count)]);
 
+            }
+        }
     }
 }

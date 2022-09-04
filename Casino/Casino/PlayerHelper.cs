@@ -8,11 +8,14 @@ namespace Casino
 {
     internal class PlayerHelper
     {
-        public List<string> namesArray = new List<string> { "Bob", "John", "Mike", "Joshua", "Allan", "Kane", "Cris", "Teo", "Patrik", "Leo" };
-        string playerName;
-        public void PlayerName(List<CasinoPlayer> arrayPlayers)
+        public static List<string> namesArray = new List<string> { "Bob", "John", "Mike", "Joshua", "Allan", "Kane", "Cris", "Teo", "Patrik", "Leo" };
+        public void PlayerName(CasinoPlayer player)
         {
-            playerName = namesArray[0];
+            if (namesArray.Count == 0)
+            {
+                return;
+            }
+            player.playerName = namesArray[0];
             namesArray.RemoveAt(0);
         }
     }
