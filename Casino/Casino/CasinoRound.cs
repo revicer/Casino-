@@ -14,81 +14,62 @@ namespace Casino
         private RandomHelper _secondCube = new RandomHelper();
 
         private int _roundBalance = 0;
-        private int _roundBet = 10;
+        private const int _roundBet = 10;
 
         public int GetBetValue() { return _roundBet; }
 
         public void StartRound(List <CasinoPlayer>arrayPlayers)
         {
-
             _roundBalance = 0;
-            _roundBet = 10;
 
             for (int i = 0; i < arrayPlayers.Count; i++)
             {
-                arrayPlayers[i].RemoveChips(_roundBet);
+                arrayPlayers[i].RemoveChips(GetBetValue());
                 _roundBalance += _roundBet;
             }
-            List<int> playerValue = IngameCubeRoll(arrayPlayers);
-            IngameRound(arrayPlayers, playerValue);
+
+            var playersRoll = new Dictionary<CasinoPlayer, int>();
+
+            foreach (var player in arrayPlayers)
+            {
+                int cubeValue = _firstCube.RollCube() + _secondCube.RollCube();
+                playersRoll.Add(player, cubeValue);
+                Console.WriteLine(cubeValue);
+            }
+
+            CasinoPlayer[] winners = GetWinners(playersRoll);
+
+            foreach (var player in winners)
+            {
+                player.AddChips(_roundBalance / winners.Length);
+            }
+
+            foreach (var player in arrayPlayers)
+            {
+                player.PlayerBalance();
+            }
         }
-        private List<int> IngameCubeRoll (List<CasinoPlayer> arrayPlayers)
+
+        private CasinoPlayer[]  GetWinners (Dictionary<CasinoPlayer, int> playersRoll)
         {
-            List<int> playerCubeValue = new List<int>();
-
-            for (int i = 0; i < arrayPlayers.Count; i++)
-            {
-                int cubesValue = _firstCube.RollCube() + _secondCube.RollCube();
-                playerCubeValue.Add(cubesValue);
-                Console.WriteLine(cubesValue);
-            }
-            return playerCubeValue;
-        }
-        private void IngameRound(List<CasinoPlayer> arrayPlayers, List<int> playerCubeValue) 
-        { 
-            int[] _drawPlayerIndex = DrawRound(playerCubeValue);
-
-            if (_drawPlayerIndex.Length > 1)
-            {
-                Console.WriteLine("Draw!");
-                for (int i = 0; i < _drawPlayerIndex.Length; i++)
-                {
-                    arrayPlayers[_drawPlayerIndex[i]].AddChips(_roundBalance / _drawPlayerIndex.Length);
-                }
-            }
-            else
-            {
-                var winnerIndex = playerCubeValue.IndexOf(playerCubeValue.Max());
-                arrayPlayers[winnerIndex].AddChips(_roundBalance);
-            }
-
-            for (int i = 0; i <= arrayPlayers.Count - 1; i++)
-            {
-                arrayPlayers[i].PlayerBalance();
-            }
-
-        }
-        private int[] DrawRound(List<int> playerCubeValue)
-        {
-            var maxCubeValue = new List<int>();
+            var winnersRound = new List<CasinoPlayer>();
             int tempMaxValue = int.MinValue;
 
-            for (int i = 0; i < playerCubeValue.Count; i++)
+            foreach (var playerRoll in playersRoll)
             {
-                var cubeValue = playerCubeValue[i];
-                if (cubeValue == tempMaxValue)
+                if (playerRoll.Value == tempMaxValue)
                 {
-                    maxCubeValue.Add(i);
+                    winnersRound.Add(playerRoll.Key);
                     continue;
                 }
-                if (cubeValue > tempMaxValue)
+                if (playerRoll.Value > tempMaxValue)
                 {
-                    tempMaxValue = cubeValue;
-                    maxCubeValue.Clear();
-                    maxCubeValue.Add(i);
+                    tempMaxValue = playerRoll.Value;
+                    winnersRound.Clear();
+                    winnersRound.Add(playerRoll.Key);
                 }
             }
-            return maxCubeValue.ToArray();
+            return winnersRound.ToArray();
         }
     }
 }

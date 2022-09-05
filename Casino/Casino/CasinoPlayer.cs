@@ -11,10 +11,7 @@ namespace Casino
         private int _balanceChips = 100;
         public string playerName;
         CasinoRound casinoRound = new CasinoRound();
-        public int GetBalance()
-        {
-            return _balanceChips;
-        }
+
         public void RemoveChips(int roundChips)
         {
             _balanceChips -= roundChips; 

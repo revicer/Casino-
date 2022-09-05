@@ -8,18 +8,22 @@ namespace Casino
 {
     internal class PlayerCount
     {
-        RandomHelper randomHelper = new RandomHelper();
-        Random randomIndex = new Random();
-        private static int _maxPlayerCoutn = 8;
-        List<int> playersAtAll = new List<int>(_maxPlayerCoutn);
+        private RandomHelper _randomHelper = new RandomHelper();
+        private Random _randomIndex = new Random();
+        private static int _maxPlayerCount = 10;
+        private static List<int> _playersAtAll = new List<int>(_maxPlayerCount);
+        
+        public static List<int> GetTotalPlayer() { return _playersAtAll; }
+
         public void PlayerPerRound(List<CasinoPlayer> arrayPlayers)
         {
-            if (playersAtAll.Count < _maxPlayerCoutn)
+            if (_playersAtAll.Count < _maxPlayerCount)
             {
                 PlayerAdded(arrayPlayers);
             }
             PlayerRemover(arrayPlayers);
         }
+
         public void PlayerDeleteZeroChips(List<CasinoPlayer> arrayPlayers)
         {
             for (int i = 0; i < arrayPlayers.Count; i++)
@@ -30,23 +34,20 @@ namespace Casino
                 }
             }
         }
-        public void PlayerCheck(List<CasinoPlayer> arrayPlayers)
-        {
-            playersAtAll.Add(1);
-        }
+
         private void PlayerAdded(List<CasinoPlayer> arrayPlayers)
         {
-            if (randomHelper.Roll(30))
+            if (_randomHelper.Roll(30))
             {
                 arrayPlayers.Add(PlayerFactory.Create());
-                PlayerCheck(arrayPlayers);
             }
         }
+
         private void PlayerRemover(List<CasinoPlayer> arrayPlayers)
         {
-            if (randomHelper.Roll(30))
+            if (_randomHelper.Roll(5))
             {
-                arrayPlayers.Remove(arrayPlayers[randomIndex.Next(0, arrayPlayers.Count)]);
+                arrayPlayers.Remove(arrayPlayers[_randomIndex.Next(0, arrayPlayers.Count)]);
 
             }
         }
